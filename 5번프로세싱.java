@@ -25,13 +25,9 @@ void loop() {
     String command = Serial.readString();
     command.trim();
 
-    if (command == "on") {
-      digitalWrite(ledPin, HIGH);
-    } 
-    else if (command == "off") {
-      digitalWrite(ledPin, LOW);
-    }
-    else if (command.toInt() >= 1 && command.toInt() <=8) { 
+    if (command == "on") digitalWrite(ledPin, HIGH);
+    if (command == "off") digitalWrite(ledPin, LOW);
+    if (command.toInt() >= 1 && command.toInt() <=8) { 
       playTone(command.toInt());
     }
   }
