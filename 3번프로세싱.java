@@ -4,6 +4,9 @@ void setup() {
 
 void draw() {
   background(backgroundColor);
+  textSize(32);
+  fill(0);
+  text(key, 20, 80);
 }
 
 void keyPressed() {
