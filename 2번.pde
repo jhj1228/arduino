@@ -4,8 +4,8 @@ Server s;
  Client c;
  Serial p;
  void setup() {
-   s = new Server(this, 123);
-   p = new Serial(this, "COM11", 9600);
+   s = new Server(this, 12345);
+   p = new Serial(this, "COM3", 9600);
  }
  String msg="hi";
  void draw() {
