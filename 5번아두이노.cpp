@@ -1,34 +1,53 @@
 void setup() {
-  pinMode(ledPin, OUTPUT);
-  pinMode(piezoPin, OUTPUT);
-  
   Serial.begin(9600);
-  
-  tone(4, 523, 500);
-  delay(500 * 1.3);
-  tone(4, 587, 500);
-  delay(500 * 1.3);
-  tone(4, 659, 500);
-  delay(500 * 1.3);
-  tone(4, 698, 500);
-  delay(500 * 1.3);
-  tone(4, 783, 500);
-  delay(500 * 1.3);
-  tone(4, 880, 500);
-  delay(500 * 1.3);
-  tone(4, 987, 500);
-  delay(500 * 1.3);
+  pinMode(7, OUTPUT);
 }
-
 void loop() {
-  if (Serial.available()) {
-    String command = Serial.readString();
-    command.trim();
+  
+  String values[] = {"1", "2", "3", "4", "5", "6", "7", "8"};
 
-    if (command == "on") digitalWrite(ledPin, HIGH);
-    if (command == "off") digitalWrite(ledPin, LOW);
-    if (command.toInt() >= 1 && command.toInt() <=8) { 
-      playTone(command.toInt());
+  if (Serial.available() > 0) {
+    
+    String m = Serial.readStringUntil('\n');
+        if (m == "on") {
+      digitalWrite(7, HIGH);
+    } else if (m == "off") {
+      digitalWrite(7, LOW);
+    } else {
+      int frequency = 0;
+      int value = m.toInt();
+      switch (value) {
+        case 1:
+          frequency = 261; 
+          break;
+        case 2:
+          frequency = 293; 
+          break;
+        case 3:
+          frequency = 329; 
+          break;
+        case 4:
+          frequency = 349; 
+          break;
+        case 5:
+          frequency = 392; 
+          break;
+        case 6:
+          frequency = 440; 
+          break;
+        case 7:
+          frequency = 493; 
+          break;
+        case 8:
+          frequency = 523; // 
+          break;
+        default:
+          break;
+      }
+
+      if (frequency > 0) {
+        tone(4, frequency, 500); 
+      }
     }
   }
 }
