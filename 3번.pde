@@ -1,7 +1,7 @@
 import processing.serial.*;
 Serial p;
 void setup(){
-  p = new Serial(this, "COM11", 9600);
+  p = new Serial(this, "COM3", 9600);
 }
 String m="";
 void draw(){
