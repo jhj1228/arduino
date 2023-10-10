@@ -1,16 +1,28 @@
+import processing.serial.*;
 import processing.net.*;
-
+Serial p;
+Server s;
 Client c;
-
-void setup() {
-  size(200, 200);
-  c = new Client(this, "COM3", 12345);
+void setup(){
+  p = new Serial(this, "COM3", 9600);
+  s = new Server(this, 12345);
 }
-
-void draw() {
-}
-
-void keyPressed() {
-  if (key == '1') c.write("1");
-  if (key == '0') c.write("0");
+String m="";
+void draw(){
+  if(p.available()>0){
+    m = p.readStringUntil('\n');
+    if(m!=null){
+      print(m);
+    }
+  }
+  c = s.available();
+  if(c!=null){
+    String w = c.readString();
+    println(w);
+    if (w.indexOf("GET")==0) {
+      c.write("HTTP/1.1 200 OK\r\n\r\n\r\n");
+      c.write(m);
+    }
+    c.stop();
+  }
 }
