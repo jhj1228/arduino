@@ -39,7 +39,7 @@ void loop() {
           frequency = 493; 
           break;
         case 8:
-          frequency = 523; // 
+          frequency = 523; 
           break;
         default:
           break;
